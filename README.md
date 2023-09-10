@@ -70,13 +70,50 @@ The full form of an ARM is an advanced reduced instruction set computer (RISC) m
 
 
 ## STM 32 CUBE PROGRAM :
+```
+DEVELOPED BY : MATHESWARAN K
+REGISTER NUMBER : 212222110024
+```
+```
+#include "main.h"
+#include "stdbool.h"
+bool IRSENSOR;
+void IRPAIR();
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
 
+int main(void)
+{
 
-
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+ 
+  while (1)
+  {
+	 IRPAIR();
+   
+  }
+}
+void IRPAIR()
+{
+	IRSENSOR=HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4);
+	if(IRSENSOR==0)
+	{
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0,GPIO_PIN_RESET);
+		HAL_Delay(1000);
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0,GPIO_PIN_SET);
+		HAL_Delay(1000);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0,GPIO_PIN_RESET);
+		HAL_Delay(1000);
+	}
+}
+```
 ## Output  :
- 
- 
- 
+ ![image](https://github.com/mathes6112004/EXPERIMENT--02-INTERFACEING-A-DIGITAL-INPUT-TO-IOT-DEVELOPMENT-BOARD-/assets/119477782/bba36b06-78f1-4860-b04b-9d18fce325b9)
  
 ## Result :
 Interfacing a digital Input (ir pair) with ARM microcontroller based IOT development is executed and the results are verified.
